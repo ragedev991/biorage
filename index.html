@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rage BIO</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Подключение анимаций -->
+    <script src="./three.min.js"></script>
+    <script src="./vanta.waves.min.js"></script>
+    <script src="./app.js"></script>
+
+    <!-- Фон -->
+    <div class="intro" id="intro"></div>
+
+    <!-- Музыка -->
+    <audio id="bg-music" loop>
+      <source src="music.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+      <!-- Хедер -->
+      <div class="header">
+        <img src="banner.jpg" alt="Cover" />
+        <div class="text-overlay">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Профиль -->
+      <div class="profile">
+        <img id="avatar" src="avatar.jpg" alt="Profile" />
+        <h1>rage</h1>
+        <p>This User has no Description.</p>
+        <button id="play-music">▶ Воспроизвести музыку</button>
+      </div>
+
+      <!-- Ссылки -->
+      <div class="links">
+        <a
+          class="link"
+          href="https://github.com/ragedev991"
+          target="_blank"
+          >GitHub</a
+        >
+          <a class="link" href="https://t.me/ragedev123" target="_blank">Telegram channel
+          </a>
+      </div>
+    </div>  
+
+    <!-- Скрипт управления музыкой -->
+    <script>
+      const audio = document.getElementById("bg-music");
+      const playButton = document.getElementById("play-music");
+      const avatar = document.getElementById("avatar");
+
+      playButton.addEventListener("click", () => {
+        if (playButton.textContent.includes("▶")) {
+          audio.play();
+          playButton.textContent = "❚❚ Остановить музыку";
+        } else {
+          audio.pause();
+          playButton.textContent = "▶ Воспроизвести музыку";
+        }
+      });
+
+      avatar.addEventListener("click", () => {
+        audio.pause();
+        audio.currentTime = 0;
+        playButton.textContent = "▶ Воспроизвести музыку";
+        window.open("avatar.jpg", "_blank");
+      });
+
+      window.addEventListener("beforeunload", () => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+    </script>
+  </body>
+</html>
